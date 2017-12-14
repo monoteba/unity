@@ -38,11 +38,7 @@ public class CopyAnimationEvents : EditorWindow
 
         if (GUILayout.Button("Copy"))
         {
-            if (_clipToCopy == null || _clipToPaste == null)
-            {
-                ShowNotification(new GUIContent("Need both a clip to copy from and paste to."));
-            }
-            else
+            if (_clipToCopy != null && _clipToPaste != null)
             {
                 CopyAnimationEventsModel.CopyAnimationEvents(_clipToCopy, _clipToPaste);
             }
@@ -62,9 +58,11 @@ public class CopyAnimationEventsModel : AssetPostprocessor
         var assetImporter = AssetImporter.GetAtPath(assetPath);
         var modelImporter = assetImporter as ModelImporter;
 
+
         // if animation is not from a model (like fbx), paste the events to the clip directly
         if (modelImporter == null)
         {
+            Undo.RecordObject(clipToPaste, "Copy Animation Events");
             AnimationUtility.SetAnimationEvents(clipToPaste, clipToCopy.events);
             return;
         }
@@ -80,6 +78,7 @@ public class CopyAnimationEventsModel : AssetPostprocessor
             }
         }
         // assign the modified clips back to the model importer clips, and re-import the asset
+        Undo.RecordObject(modelImporter, "Copy Animation Events");
         modelImporter.clipAnimations = clips;
         AssetDatabase.ImportAsset(assetPath);
     }
