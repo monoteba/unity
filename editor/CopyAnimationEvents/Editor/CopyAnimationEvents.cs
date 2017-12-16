@@ -24,7 +24,7 @@ public class CopyAnimationEvents : EditorWindow
     {
         var style = new GUIStyle(GUI.skin.box);
         style.alignment = TextAnchor.MiddleCenter;
-        style.normal.textColor = Color.white;
+        style.normal.textColor = EditorGUIUtility.isProSkin ?  Color.white : Color.black;
         style.fixedWidth = width;
         style.fixedHeight = height;
 
