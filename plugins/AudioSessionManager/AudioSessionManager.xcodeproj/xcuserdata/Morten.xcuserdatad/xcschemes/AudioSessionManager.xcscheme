@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "89B6E8A7E5487DB29333A6DB"
+               BuildableName = "AudioSessionManager.app"
+               BlueprintName = "AudioSessionManager"
+               ReferencedContainer = "container:AudioSessionManager.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "89B6E8A7E5487DB29333A6DB"
+            BuildableName = "AudioSessionManager.app"
+            BlueprintName = "AudioSessionManager"
+            ReferencedContainer = "container:AudioSessionManager.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+</Scheme>
