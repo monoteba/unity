@@ -1,6 +1,6 @@
-# Debug Button Attribute
+# [DebugButton] Attribute
 
-Creates a button in the inspector to call a method.
+Creates a button in the inspector to call a method inside the Unity Editor.
 
 ```csharp
 [DebugButton]
