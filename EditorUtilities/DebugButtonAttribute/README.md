@@ -1,7 +1,7 @@
 # [DebugButton] Attribute
 
 <p align="center">
-<img src="debug-button-attribute.png">
+<img src="debug-button-attribute.png" width="50%">
 </p>
 
 Creates a button in the inspector to call a method inside the Unity Editor. Only support a limited number of parameter object types.
