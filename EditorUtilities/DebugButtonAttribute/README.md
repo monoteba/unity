@@ -2,8 +2,7 @@
 
 Creates a button in the inspector to call a method.
 
-Use with
-```
+```c-sharp
 [DebugButton]
 public void MyMethod()
 {
