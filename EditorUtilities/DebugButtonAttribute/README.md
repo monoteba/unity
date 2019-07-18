@@ -9,3 +9,5 @@ public void MyMethod()
     Debug.Log("Hello, world!");
 }
 ```
+
+Special thanks to Bjørn Jespersen-Kaae for creating the original script :)
