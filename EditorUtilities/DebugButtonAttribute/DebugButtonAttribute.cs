@@ -33,8 +33,7 @@ public class DrawDebugButtonAttributes : Editor
 
     public void OnEnable()
     {
-        var methods = target.GetType()
-            .GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+        var methods = target.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 
         foreach (var method in methods)
         {
@@ -71,10 +70,14 @@ public class DrawDebugButtonAttributes : Editor
         EditorGUILayout.Space();
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Debug Methods", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Debug", EditorStyles.boldLabel);
 
         foreach (var info in _methodCallInfo)
         {
+            EditorGUILayout.Space();
+            HorizontalLine();
+            EditorGUILayout.Space();
+
             EditorGUILayout.BeginHorizontal();
 
             var methodName = FormatName(info.MethodInfo.Name);
@@ -96,32 +99,76 @@ public class DrawDebugButtonAttributes : Editor
             {
                 EditorGUI.indentLevel++;
 
-                foreach (var t in info.Parameters)
+                EditorGUILayout.BeginVertical();
+                foreach (var p in info.Parameters)
                 {
-                    EditorGUILayout.BeginVertical();
-                    var p = t;
-                    var paramName = FormatName(p.ParamInfo.Name);
-                    CheckNull<float>(ref p, value => EditorGUILayout.FloatField(paramName, value));
-                    CheckNull<int>(ref p, value => EditorGUILayout.IntField(paramName, value));
-                    CheckNull<bool>(ref p, value => EditorGUILayout.Toggle(paramName, value));
-                    CheckNull<string>(ref p, value => EditorGUILayout.TextField(paramName, value));
-                    CheckNull<Vector2>(ref p, value => EditorGUILayout.Vector2Field(paramName, value));
-                    CheckNull<Vector3>(ref p, value => EditorGUILayout.Vector3Field(paramName, value));
-                    CheckNull<Vector4>(ref p, value => EditorGUILayout.Vector4Field(paramName, value));
-                    CheckNull<Color>(ref p, value => EditorGUILayout.ColorField(paramName, value));
-                    CheckNull<LayerMask>(ref p, value => EditorGUILayout.LayerField(paramName, value));
-                    CheckNull<AnimationCurve>(ref p, value => EditorGUILayout.CurveField(paramName, value));
-                    CheckNull<Transform>(ref p,
-                        value => (Transform) EditorGUILayout.ObjectField(paramName, value, typeof(Transform), true));
-                    CheckNull<ScriptableObject>(ref p,
-                        value => (ScriptableObject) EditorGUILayout.ObjectField(paramName, value,
-                            typeof(UnityEngine.Object), true));
-                    CheckNull<MonoBehaviour>(ref p,
-                        value => (MonoBehaviour) EditorGUILayout.ObjectField(paramName, value,
-                            typeof(UnityEngine.Object), true));
+                    var param = p;
+                    var paramName = FormatName(param.ParamInfo.Name);
 
-                    EditorGUILayout.EndVertical();
+                    if (param.ParamInfo.ParameterType.IsValueType == false)
+                    {
+                        if (param.ParamInfo.ParameterType.BaseType == typeof(MonoBehaviour))
+                        {
+                            param.Obj = (MonoBehaviour) EditorGUILayout.ObjectField(paramName, param.Obj as MonoBehaviour, typeof(MonoBehaviour), true);
+                        }
+                        else
+                        {
+                            if (CheckNull<GameObject>(ref param, f => (GameObject) EditorGUILayout.ObjectField(paramName, f, typeof(GameObject), true)))
+                                continue;
+                            if (CheckNull<Transform>(ref param, f => (Transform) EditorGUILayout.ObjectField(paramName, f, typeof(Transform), true)))
+                                continue;
+                            if (CheckNull<Renderer>(ref param, f => (Renderer) EditorGUILayout.ObjectField(paramName, f, typeof(Renderer), true)))
+                                continue;
+                            if (CheckNull<MeshFilter>(ref param, f => (MeshFilter) EditorGUILayout.ObjectField(paramName, f, typeof(MeshFilter), true)))
+                                continue;
+                            if (CheckNull<Camera>(ref param, f => (Camera) EditorGUILayout.ObjectField(paramName, f, typeof(Camera), true)))
+                                continue;
+                            if (CheckNull<ParticleSystem>(ref param, f => (ParticleSystem) EditorGUILayout.ObjectField(paramName, f, typeof(ParticleSystem), true)))
+                                continue;
+                            if (CheckNull<Animator>(ref param, f => (Animator) EditorGUILayout.ObjectField(paramName, f, typeof(Animator), true)))
+                                continue;
+                            if (CheckNull<Rigidbody>(ref param, f => (Rigidbody) EditorGUILayout.ObjectField(paramName, f, typeof(Rigidbody), true)))
+                                continue;
+                            if (CheckNull<Rigidbody2D>(ref param, f => (Rigidbody2D) EditorGUILayout.ObjectField(paramName, f, typeof(Rigidbody2D), true)))
+                                continue;
+                            if (CheckNull<Collider>(ref param, f => (Collider) EditorGUILayout.ObjectField(paramName, f, typeof(Collider), true)))
+                                continue;
+                            if (CheckNull<Collider2D>(ref param, f => (Collider2D) EditorGUILayout.ObjectField(paramName, f, typeof(Collider2D), true)))
+                                continue;
+                            if (CheckNull<Texture2D>(ref param, f => (Texture2D) EditorGUILayout.ObjectField(paramName, f, typeof(Texture2D), true)))
+                                continue;
+                            if (CheckNull<Sprite>(ref param, f => (Sprite) EditorGUILayout.ObjectField(paramName, f, typeof(Sprite), true)))
+                                continue;
+                            if (CheckNull<AudioClip>(ref param, f => (AudioClip) EditorGUILayout.ObjectField(paramName, f, typeof(AudioClip), true)))
+                                continue;
+                            if (CheckNull<ScriptableObject>(ref param, f => (ScriptableObject) EditorGUILayout.ObjectField(paramName, f, typeof(ScriptableObject), true)))
+                                continue;
+                        }
+                    }
+                    else
+                    {
+                        if (CheckNull<bool>(ref param, value => EditorGUILayout.Toggle(paramName, value)))
+                            continue;
+                        if (CheckNull<int>(ref param, value => EditorGUILayout.IntField(paramName, value)))
+                            continue;
+                        if (CheckNull<float>(ref param, value => EditorGUILayout.FloatField(paramName, value)))
+                            continue;
+                        if (CheckNull<string>(ref param, value => EditorGUILayout.TextField(paramName, value)))
+                            continue;
+                        if (CheckNull<Vector2>(ref param, value => EditorGUILayout.Vector2Field(paramName, value)))
+                            continue;
+                        if (CheckNull<Vector3>(ref param, value => EditorGUILayout.Vector3Field(paramName, value)))
+                            continue;
+                        if (CheckNull<Vector4>(ref param, value => EditorGUILayout.Vector4Field(paramName, value)))
+                            continue;
+                        if (CheckNull<Color>(ref param, value => EditorGUILayout.ColorField(paramName, value)))
+                            continue;
+                        if (CheckNull<LayerMask>(ref param, value => EditorGUILayout.LayerField(paramName, value)))
+                            continue;
+                    }
                 }
+
+                EditorGUILayout.EndVertical();
 
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
@@ -131,15 +178,18 @@ public class DrawDebugButtonAttributes : Editor
         EditorGUILayout.EndVertical();
     }
 
-    private void CheckNull<T>(ref ParamTuple tup, Func<T, T> drawMethod)
+    private bool CheckNull<T>(ref ParamTuple tup, Func<T, T> drawMethod)
     {
-        if (typeof(T) == tup.ParamInfo.ParameterType)
+        if (tup.ParamInfo.ParameterType == typeof(T))
         {
             if (DBNull.Value.Equals(tup.Obj))
                 tup.Obj = default(T);
 
             tup.Obj = drawMethod((T) tup.Obj);
+            return true;
         }
+
+        return false;
     }
 
     private string FormatName(string str)
@@ -150,8 +200,15 @@ public class DrawDebugButtonAttributes : Editor
         }
 
         str = str.First().ToString().ToUpper() + str.Substring(1);
-        
+
         return string.Concat(str.Select(x => char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+    }
+
+    private void HorizontalLine()
+    {
+        var rect = EditorGUILayout.GetControlRect(false, 1);
+        rect.height = 1;
+        EditorGUI.DrawRect(rect, new Color(0.5f, 0.5f, 0.5f, 1));
     }
 }
 
