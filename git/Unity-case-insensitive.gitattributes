@@ -1,0 +1,345 @@
+# Case-insensitive .gitattributes for Unity.
+# 
+# Unlike other examples, this does not use UnityYAMLMerge: 
+# https://docs.unity3d.com/Manual/SmartMerge.html
+#
+# Instead, it is setup to leave Unity file types alone and by default resolve 
+# merge conflicts by using "ours" by default. I haven't always had good 
+# experience with the merge tool, and prefer to resolve most conflicts on a
+# ours/theirs basis. 
+#
+# You should set Unity to use "Visible meta files" and asset serialization set
+# to "Force Text"
+#
+# All binary file types I could think of is set to use LFS. This includes 3D
+# models, images, sound, zips and a bunch of others. Scroll through to check.
+#
+# You are free to use, share and modify this without limitation.
+#
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+# c 
+*.[Cc] merge diff=cpp text
+# cpp 
+*.[Cc][Pp][Pp] merge diff=cpp text
+# cs 
+*.[Cc][Ss] merge diff=csharp text
+# h 
+*.[Hh] merge text
+# java 
+*.[Jj][Aa][Vv][Aa] merge diff=java text
+# js 
+*.[Jj][Ss] merge diff text
+# m 
+*.[Mm] merge diff=objc text
+# py 
+*.[Pp][Yy] merge diff=python text
+
+# Text files
+# txt 
+*.[Tt][Xx][Tt] text
+# md 
+*.[Mm][Dd] text
+
+# Unity
+# anim 
+*.[Aa][Nn][Ii][Mm] merge=binary diff -text
+# asmdef 
+*.[Aa][Ss][Mm][Dd][Ee][Ff] merge=binary diff -text
+# asmref 
+*.[Aa][Ss][Mm][Rr][Ee][Ff] merge=binary diff -text
+# asset 
+*.[Aa][Ss][Ss][Ee][Tt] merge=binary diff -text
+# brush 
+*.[Bb][Rr][Uu][Ss][Hh] merge=binary diff -text
+# cginc 
+*.[Cc][Gg][Ii][Nn][Cc] merge=binary diff -text
+# controller 
+*.[Cc][Oo][Nn][Tt][Rr][Oo][Ll][Ll][Ee][Rr] merge=binary diff -text
+# cubemap 
+*.[Cc][Uu][Bb][Ee][Mm][Aa][Pp] merge=binary diff -text
+# flare 
+*.[Ff][Ll][Aa][Rr][Ee] merge=binary diff -text
+# fontsettings 
+*.[Ff][Oo][Nn][Tt][Ss][Ee][Tt][Tt][Ii][Nn][Gg][Ss] merge=binary diff -text
+# giparams 
+*.[Gg][Ii][Pp][Aa][Rr][Aa][Mm][Ss] merge=binary diff -text
+# guiskin 
+*.[Gg][Uu][Ii][Ss][Kk][Ii][Nn] merge=binary diff -text
+# mask 
+*.[Mm][Aa][Ss][Kk] merge=binary diff -text
+# mat 
+*.[Mm][Aa][Tt] merge=binary diff -text
+# meta 
+*.[Mm][Ee][Tt][Aa] merge=binary diff -text
+# overrideController 
+*.[Oo][Vv][Ee][Rr][Rr][Ii][Dd][Ee][Cc][Oo][Nn][Tt][Rr][Oo][Ll][Ll][Ee][Rr] merge=binary diff -text
+# physicMaterial 
+*.[Pp][Hh][Yy][Ss][Ii][Cc][Mm][Aa][Tt][Ee][Rr][Ii][Aa][Ll] merge=binary diff -text
+# physicsMaterial2D 
+*.[Pp][Hh][Yy][Ss][Ii][Cc][Ss][Mm][Aa][Tt][Ee][Rr][Ii][Aa][Ll]2[Dd] merge=binary diff -text
+# playable 
+*.[Pp][Ll][Aa][Yy][Aa][Bb][Ll][Ee] merge=binary diff -text
+# prefab 
+*.[Pp][Rr][Ee][Ff][Aa][Bb] merge=binary diff -text
+# renderTexture 
+*.[Rr][Ee][Nn][Dd][Ee][Rr][Tt][Ee][Xx][Tt][Uu][Rr][Ee] merge=binary diff -text
+# shader 
+*.[Ss][Hh][Aa][Dd][Ee][Rr] merge=binary diff -text
+# signal 
+*.[Ss][Ii][Gg][Nn][Aa][Ll] merge=binary diff -text
+# spriteatlas 
+*.[Ss][Pp][Rr][Ii][Tt][Ee][Aa][Tt][Ll][Aa][Ss] merge=binary diff -text
+# terrainlayer 
+*.[Tt][Ee][Rr][Rr][Aa][Ii][Nn][Ll][Aa][Yy][Ee][Rr] merge=binary diff -text
+# unity 
+*.[Uu][Nn][Ii][Tt][Yy] merge=binary diff -text
+# uss 
+*.[Uu][Ss][Ss] merge=binary diff -text
+# uxml 
+*.[Uu][Xx][Mm][Ll] merge=binary diff -text
+# xsd 
+*.[Xx][Ss][Dd] merge=binary diff -text
+
+# Unity LFS
+# unitypackage 
+*.[Uu][Nn][Ii][Tt][Yy][Pp][Aa][Cc][Kk][Aa][Gg][Ee] filter=lfs diff=lfs merge=lfs -text
+
+# 3D formats
+# 3dm 
+*.3[Dd][Mm] filter=lfs diff=lfs merge=lfs -text
+# 3ds 
+*.3[Dd][Ss] filter=lfs diff=lfs merge=lfs -text
+# abc 
+*.[Aa][Bb][Cc] filter=lfs diff=lfs merge=lfs -text
+# blend 
+*.[Bb][Ll][Ee][Nn][Dd] filter=lfs diff=lfs merge=lfs -text
+# c4d 
+*.[Cc]4[Dd] filter=lfs diff=lfs merge=lfs -text
+# collada 
+*.[Cc][Oo][Ll][Ll][Aa][Dd][Aa] filter=lfs diff=lfs merge=lfs -text
+# dae 
+*.[Dd][Aa][Ee] filter=lfs diff=lfs merge=lfs -text
+# dxf 
+*.[Dd][Xx][Ff] filter=lfs diff=lfs merge=lfs -text
+# fbx 
+*.[Ff][Bb][Xx] filter=lfs diff=lfs merge=lfs -text
+# lwo 
+*.[Ll][Ww][Oo] filter=lfs diff=lfs merge=lfs -text
+# lwo2 
+*.[Ll][Ww][Oo]2 filter=lfs diff=lfs merge=lfs -text
+# lws 
+*.[Ll][Ww][Ss] filter=lfs diff=lfs merge=lfs -text
+# lxo 
+*.[Ll][Xx][Oo] filter=lfs diff=lfs merge=lfs -text
+# ma 
+*.[Mm][Aa] filter=lfs diff=lfs merge=lfs -text
+# max 
+*.[Mm][Aa][Xx] filter=lfs diff=lfs merge=lfs -text
+# mb 
+*.[Mm][Bb] filter=lfs diff=lfs merge=lfs -text
+# obj 
+*.[Oo][Bb][Jj] filter=lfs diff=lfs merge=lfs -text
+# ply 
+*.[Pp][Ll][Yy] filter=lfs diff=lfs merge=lfs -text
+# skp 
+*.[Ss][Kk][Pp] filter=lfs diff=lfs merge=lfs -text
+# stl 
+*.[Ss][Tt][Ll] filter=lfs diff=lfs merge=lfs -text
+# ztl 
+*.[Zz][Tt][Ll] filter=lfs diff=lfs merge=lfs -text
+
+# Image formats
+# bmp 
+*.[Bb][Mm][Pp] filter=lfs diff=lfs merge=lfs -text
+# dds 
+*.[Dd][Dd][Ss] filter=lfs diff=lfs merge=lfs -text
+# exr 
+*.[Ee][Xx][Rr] filter=lfs diff=lfs merge=lfs -text
+# gif 
+*.[Gg][Ii][Ff] filter=lfs diff=lfs merge=lfs -text
+# hdr 
+*.[Hh][Dd][Rr] filter=lfs diff=lfs merge=lfs -text
+# iff 
+*.[Ii][Ff][Ff] filter=lfs diff=lfs merge=lfs -text
+# jpeg 
+*.[Jj][Pp][Ee][Gg] filter=lfs diff=lfs merge=lfs -text
+# jpg 
+*.[Jj][Pp][Gg] filter=lfs diff=lfs merge=lfs -text
+# pict 
+*.[Pp][Ii][Cc][Tt] filter=lfs diff=lfs merge=lfs -text
+# png 
+*.[Pp][Nn][Gg] filter=lfs diff=lfs merge=lfs -text
+# psb 
+*.[Pp][Ss][Bb] filter=lfs diff=lfs merge=lfs -text
+# psd 
+*.[Pp][Ss][Dd] filter=lfs diff=lfs merge=lfs -text
+# tex 
+*.[Tt][Ee][Xx] filter=lfs diff=lfs merge=lfs -text
+# tga 
+*.[Tt][Gg][Aa] filter=lfs diff=lfs merge=lfs -text
+# tif 
+*.[Tt][Ii][Ff] filter=lfs diff=lfs merge=lfs -text
+# tiff 
+*.[Tt][Ii][Ff][Ff] filter=lfs diff=lfs merge=lfs -text
+# tx 
+*.[Tt][Xx] filter=lfs diff=lfs merge=lfs -text
+
+# Vector formats
+# ai 
+*.[Aa][Ii] filter=lfs diff=lfs merge=lfs -text
+# eps 
+*.[Ee][Pp][Ss] filter=lfs diff=lfs merge=lfs -text
+# pdf 
+*.[Pp][Dd][Ff] filter=lfs diff=lfs merge=lfs -text
+# svg 
+*.[Ss][Vv][Gg] filter=lfs diff=lfs merge=lfs -text
+# swf 
+*.[Ss][Ww][Ff] filter=lfs diff=lfs merge=lfs -text
+
+# Audio formats
+# aif 
+*.[Aa][Ii][Ff] filter=lfs diff=lfs merge=lfs -text
+# aiff 
+*.[Aa][Ii][Ff][Ff] filter=lfs diff=lfs merge=lfs -text
+# bank 
+*.[Bb][Aa][Nn][Kk] filter=lfs diff=lfs merge=lfs -text
+# flac 
+*.[Ff][Ll][Aa][Cc] filter=lfs diff=lfs merge=lfs -text
+# it 
+*.[Ii][Tt] filter=lfs diff=lfs merge=lfs -text
+# m4a 
+*.[Mm]4[Aa] filter=lfs diff=lfs merge=lfs -text
+# m4r 
+*.[Mm]4[Rr] filter=lfs diff=lfs merge=lfs -text
+# mod 
+*.[Mm][Oo][Dd] filter=lfs diff=lfs merge=lfs -text
+# mp3 
+*.[Mm][Pp]3 filter=lfs diff=lfs merge=lfs -text
+# ogg 
+*.[Oo][Gg][Gg] filter=lfs diff=lfs merge=lfs -text
+# s3m 
+*.[Ss]3[Mm] filter=lfs diff=lfs merge=lfs -text
+# wav 
+*.[Ww][Aa][Vv] filter=lfs diff=lfs merge=lfs -text
+# xm 
+*.[Xx][Mm] filter=lfs diff=lfs merge=lfs -text
+
+# Video formats
+# asf 
+*.[Aa][Ss][Ff] filter=lfs diff=lfs merge=lfs -text
+# avi 
+*.[Aa][Vv][Ii] filter=lfs diff=lfs merge=lfs -text
+# dv 
+*.[Dd][Vv] filter=lfs diff=lfs merge=lfs -text
+# flv 
+*.[Ff][Ll][Vv] filter=lfs diff=lfs merge=lfs -text
+# m4v 
+*.[Mm]4[Vv] filter=lfs diff=lfs merge=lfs -text
+# mov 
+*.[Mm][Oo][Vv] filter=lfs diff=lfs merge=lfs -text
+# mp4 
+*.[Mm][Pp]4 filter=lfs diff=lfs merge=lfs -text
+# mpeg 
+*.[Mm][Pp][Ee][Gg] filter=lfs diff=lfs merge=lfs -text
+# mpg 
+*.[Mm][Pp][Gg] filter=lfs diff=lfs merge=lfs -text
+# ogv 
+*.[Oo][Gg][Vv] filter=lfs diff=lfs merge=lfs -text
+# vp8 
+*.[Vv][Pp]8 filter=lfs diff=lfs merge=lfs -text
+# webm 
+*.[Ww][Ee][Bb][Mm] filter=lfs diff=lfs merge=lfs -text
+# wmv 
+*.[Ww][Mm][Vv] filter=lfs diff=lfs merge=lfs -text
+
+# Build
+# dll 
+*.[Dd][Ll][Ll] filter=lfs diff=lfs merge=lfs -text
+# mdb 
+*.[Mm][Dd][Bb] filter=lfs diff=lfs merge=lfs -text
+# pdb 
+*.[Pp][Dd][Bb] filter=lfs diff=lfs merge=lfs -text
+# so 
+*.[Ss][Oo] filter=lfs diff=lfs merge=lfs -text
+
+# Applications
+# app 
+*.[Aa][Pp][Pp] filter=lfs diff=lfs merge=lfs -text
+# exe 
+*.[Ee][Xx][Ee] filter=lfs diff=lfs merge=lfs -text
+# msi 
+*.[Mm][Ss][Ii] filter=lfs diff=lfs merge=lfs -text
+
+# Packaging
+# 7z 
+*.7[Zz] filter=lfs diff=lfs merge=lfs -text
+# bz2 
+*.[Bb][Zz]2 filter=lfs diff=lfs merge=lfs -text
+# dmg 
+*.[Dd][Mm][Gg] filter=lfs diff=lfs merge=lfs -text
+# gz 
+*.[Gg][Zz] filter=lfs diff=lfs merge=lfs -text
+# iso 
+*.[Ii][Ss][Oo] filter=lfs diff=lfs merge=lfs -text
+# lz 
+*.[Ll][Zz] filter=lfs diff=lfs merge=lfs -text
+# rar 
+*.[Rr][Aa][Rr] filter=lfs diff=lfs merge=lfs -text
+# tar 
+*.[Tt][Aa][Rr] filter=lfs diff=lfs merge=lfs -text
+# tar 
+*.[Tt][Aa][Rr].gz filter=lfs diff=lfs merge=lfs -text
+# xz 
+*.[Xx][Zz] filter=lfs diff=lfs merge=lfs -text
+# zip 
+*.[Zz][Ii][Pp] filter=lfs diff=lfs merge=lfs -text
+
+# Fonts
+# otf 
+*.[Oo][Tt][Ff] filter=lfs diff=lfs merge=lfs -text
+# ttf 
+*.[Tt][Tt][Ff] filter=lfs diff=lfs merge=lfs -text
+
+# Documents
+# dif 
+*.[Dd][Ii][Ff] filter=lfs diff=lfs merge=lfs -text
+# doc 
+*.[Dd][Oo][Cc] filter=lfs diff=lfs merge=lfs -text
+# docm 
+*.[Dd][Oo][Cc][Mm] filter=lfs diff=lfs merge=lfs -text
+# docx 
+*.[Dd][Oo][Cc][Xx] filter=lfs diff=lfs merge=lfs -text
+# dot 
+*.[Dd][Oo][Tt] filter=lfs diff=lfs merge=lfs -text
+# dotm 
+*.[Dd][Oo][Tt][Mm] filter=lfs diff=lfs merge=lfs -text
+# dotx 
+*.[Dd][Oo][Tt][Xx] filter=lfs diff=lfs merge=lfs -text
+# pages 
+*.[Pp][Aa][Gg][Ee][Ss] filter=lfs diff=lfs merge=lfs -text
+# pdf 
+*.[Pp][Dd][Ff] filter=lfs diff=lfs merge=lfs -text
+# sdw 
+*.[Ss][Dd][Ww] filter=lfs diff=lfs merge=lfs -text
+# stw 
+*.[Ss][Tt][Ww] filter=lfs diff=lfs merge=lfs -text
+# sxw 
+*.[Ss][Xx][Ww] filter=lfs diff=lfs merge=lfs -text
+# uof 
+*.[Uu][Oo][Ff] filter=lfs diff=lfs merge=lfs -text
+# uot 
+*.[Uu][Oo][Tt] filter=lfs diff=lfs merge=lfs -text
+# wpd 
+*.[Ww][Pp][Dd] filter=lfs diff=lfs merge=lfs -text
+# wps 
+*.[Ww][Pp][Ss] filter=lfs diff=lfs merge=lfs -text
+# xls 
+*.[Xx][Ll][Ss] filter=lfs diff=lfs merge=lfs -text
+# xlt 
+*.[Xx][Ll][Tt] filter=lfs diff=lfs merge=lfs -text
+# xlw 
+*.[Xx][Ll][Ww] filter=lfs diff=lfs merge=lfs -text

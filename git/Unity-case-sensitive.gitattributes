@@ -1,0 +1,197 @@
+# Case-sensitive .gitattributes for Unity.
+# 
+# Unlike other examples, this does not use UnityYAMLMerge: 
+# https://docs.unity3d.com/Manual/SmartMerge.html
+#
+# Instead, it is setup to leave Unity file types alone and by default resolve 
+# merge conflicts by using "ours" by default. I haven't always had good 
+# experience with the merge tool, and prefer to resolve most conflicts on a
+# ours/theirs basis. 
+#
+# You should set Unity to use "Visible meta files" and asset serialization set
+# to "Force Text"
+#
+# All binary file types I could think of is set to use LFS. This includes 3D
+# models, images, sound, zips and a bunch of others. Scroll through to check.
+#
+# You are free to use, share and modify this without limitation.
+#
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.c merge diff=cpp text
+*.cpp merge diff=cpp text
+*.cs merge diff=csharp text
+*.h merge text
+*.java merge diff=java text
+*.js merge diff text
+*.m merge diff=objc text
+*.py merge diff=python text
+
+# Text files
+*.txt text
+*.md text
+
+# Unity
+*.anim merge=binary diff -text
+*.asmdef merge=binary diff -text
+*.asmref merge=binary diff -text
+*.asset merge=binary diff -text
+*.brush merge=binary diff -text
+*.cginc merge=binary diff -text
+*.controller merge=binary diff -text
+*.cubemap merge=binary diff -text
+*.flare merge=binary diff -text
+*.fontsettings merge=binary diff -text
+*.giparams merge=binary diff -text
+*.guiskin merge=binary diff -text
+*.mask merge=binary diff -text
+*.mat merge=binary diff -text
+*.meta merge=binary diff -text
+*.overrideController merge=binary diff -text
+*.physicMaterial merge=binary diff -text
+*.physicsMaterial2D merge=binary diff -text
+*.playable merge=binary diff -text
+*.prefab merge=binary diff -text
+*.renderTexture merge=binary diff -text
+*.shader merge=binary diff -text
+*.signal merge=binary diff -text
+*.spriteatlas merge=binary diff -text
+*.terrainlayer merge=binary diff -text
+*.unity merge=binary diff -text
+*.uss merge=binary diff -text
+*.uxml merge=binary diff -text
+*.xsd merge=binary diff -text
+
+# Unity LFS
+*.unitypackage filter=lfs diff=lfs merge=lfs -text
+
+# 3D formats
+*.3dm filter=lfs diff=lfs merge=lfs -text
+*.3ds filter=lfs diff=lfs merge=lfs -text
+*.abc filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.c4d filter=lfs diff=lfs merge=lfs -text
+*.collada filter=lfs diff=lfs merge=lfs -text
+*.dae filter=lfs diff=lfs merge=lfs -text
+*.dxf filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.lwo filter=lfs diff=lfs merge=lfs -text
+*.lwo2 filter=lfs diff=lfs merge=lfs -text
+*.lws filter=lfs diff=lfs merge=lfs -text
+*.lxo filter=lfs diff=lfs merge=lfs -text
+*.ma filter=lfs diff=lfs merge=lfs -text
+*.max filter=lfs diff=lfs merge=lfs -text
+*.mb filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.ply filter=lfs diff=lfs merge=lfs -text
+*.skp filter=lfs diff=lfs merge=lfs -text
+*.stl filter=lfs diff=lfs merge=lfs -text
+*.ztl filter=lfs diff=lfs merge=lfs -text
+
+# Image formats
+*.bmp filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.iff filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.pict filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.psb filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.tex filter=lfs diff=lfs merge=lfs -text
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.tx filter=lfs diff=lfs merge=lfs -text
+
+# Vector formats
+*.ai filter=lfs diff=lfs merge=lfs -text
+*.eps filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text
+*.swf filter=lfs diff=lfs merge=lfs -text
+
+# Audio formats
+*.aif filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+*.bank filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
+*.it filter=lfs diff=lfs merge=lfs -text
+*.m4a filter=lfs diff=lfs merge=lfs -text
+*.m4r filter=lfs diff=lfs merge=lfs -text
+*.mod filter=lfs diff=lfs merge=lfs -text
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+*.s3m filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.xm filter=lfs diff=lfs merge=lfs -text
+
+# Video formats
+*.asf filter=lfs diff=lfs merge=lfs -text
+*.avi filter=lfs diff=lfs merge=lfs -text
+*.dv filter=lfs diff=lfs merge=lfs -text
+*.flv filter=lfs diff=lfs merge=lfs -text
+*.m4v filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mpeg filter=lfs diff=lfs merge=lfs -text
+*.mpg filter=lfs diff=lfs merge=lfs -text
+*.ogv filter=lfs diff=lfs merge=lfs -text
+*.vp8 filter=lfs diff=lfs merge=lfs -text
+*.webm filter=lfs diff=lfs merge=lfs -text
+*.wmv filter=lfs diff=lfs merge=lfs -text
+
+# Build
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.mdb filter=lfs diff=lfs merge=lfs -text
+*.pdb filter=lfs diff=lfs merge=lfs -text
+*.so filter=lfs diff=lfs merge=lfs -text
+
+# Applications
+*.app filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.msi filter=lfs diff=lfs merge=lfs -text
+
+# Packaging
+*.7z filter=lfs diff=lfs merge=lfs -text
+*.bz2 filter=lfs diff=lfs merge=lfs -text
+*.dmg filter=lfs diff=lfs merge=lfs -text
+*.gz filter=lfs diff=lfs merge=lfs -text
+*.iso filter=lfs diff=lfs merge=lfs -text
+*.lz filter=lfs diff=lfs merge=lfs -text
+*.rar filter=lfs diff=lfs merge=lfs -text
+*.tar filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.xz filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+
+# Fonts
+*.otf filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+
+# Documents
+*.dif filter=lfs diff=lfs merge=lfs -text
+*.doc filter=lfs diff=lfs merge=lfs -text
+*.docm filter=lfs diff=lfs merge=lfs -text
+*.docx filter=lfs diff=lfs merge=lfs -text
+*.dot filter=lfs diff=lfs merge=lfs -text
+*.dotm filter=lfs diff=lfs merge=lfs -text
+*.dotx filter=lfs diff=lfs merge=lfs -text
+*.pages filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+*.sdw filter=lfs diff=lfs merge=lfs -text
+*.stw filter=lfs diff=lfs merge=lfs -text
+*.sxw filter=lfs diff=lfs merge=lfs -text
+*.uof filter=lfs diff=lfs merge=lfs -text
+*.uot filter=lfs diff=lfs merge=lfs -text
+*.wpd filter=lfs diff=lfs merge=lfs -text
+*.wps filter=lfs diff=lfs merge=lfs -text
+*.xls filter=lfs diff=lfs merge=lfs -text
+*.xlt filter=lfs diff=lfs merge=lfs -text
+*.xlw filter=lfs diff=lfs merge=lfs -text
