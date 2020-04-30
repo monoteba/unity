@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -11,8 +11,8 @@ public class PolyCounter : EditorWindow
         Triangles
     }
 
-    public MeshComponent component;
-    public int threshold = 5000;
+    public static MeshComponent component;
+    public static int threshold = 5000;
 
     private class ItemCount
     {
@@ -28,13 +28,25 @@ public class PolyCounter : EditorWindow
 
     private List<ItemCount> m_items = new List<ItemCount>();
     private Vector2 m_scroll;
+    private static int m_selectedCount;
+    private static PolyCounter m_window;
     
     [MenuItem("Tools/Poly Counter")]
     private static void Init()
     {
-        var window = (PolyCounter) GetWindow(typeof(PolyCounter));
-        window.minSize = new Vector2(400, 200);
-        window.Show();
+        m_window = (PolyCounter) GetWindow(typeof(PolyCounter));
+        m_window.minSize = new Vector2(400, 200);
+        m_window.Show();
+    }
+
+    private void Awake()
+    {
+        Selection.selectionChanged += UpdateSelected;
+    }
+
+    private void OnDestroy()
+    {
+        Selection.selectionChanged -= UpdateSelected;
     }
 
     private void OnGUI()
@@ -43,7 +55,14 @@ public class PolyCounter : EditorWindow
         EditorGUILayout.LabelField("Find objects with a high poly count", EditorStyles.boldLabel);
         EditorGUILayout.Space();
 
+        var lastComponent = component;
         component = (MeshComponent) EditorGUILayout.EnumPopup("Components", component);
+
+        if (lastComponent != component)
+        {
+            UpdateSelected();
+        }
+        
         threshold = Mathf.Max(EditorGUILayout.IntField("Min Count", threshold), 3);
         
         EditorGUILayout.Space();
@@ -78,6 +97,8 @@ public class PolyCounter : EditorWindow
         {
             Search();
         }
+        
+        EditorGUILayout.LabelField($"Selected {component}: {m_selectedCount}");
 
         EditorGUILayout.EndVertical();
     }
@@ -93,6 +114,9 @@ public class PolyCounter : EditorWindow
             case MeshComponent.Vertices:
                 foreach (var filter in filters)
                 {
+                    if (filter.sharedMesh == null)
+                        continue;
+                    
                     var count = filter.sharedMesh.vertexCount;
                     if (count >= threshold)
                     {
@@ -104,6 +128,9 @@ public class PolyCounter : EditorWindow
             case MeshComponent.Triangles:
                 foreach (var filter in filters)
                 {
+                    if (filter.sharedMesh == null)
+                        continue;
+                    
                     var count = filter.sharedMesh.triangles.Length; 
                     if (count >= threshold)
                     {
@@ -114,12 +141,51 @@ public class PolyCounter : EditorWindow
                 break;
         }
 
-        m_items = m_items.OrderByDescending(item => item.count).ToList();
-
         if (m_items.Any())
         {
+            m_items = m_items.OrderByDescending(item => item.count).ToList();
             Selection.objects = gos.ToArray();
             EditorGUIUtility.PingObject(m_items.First().gameObject);
         }
+    }
+
+    private static void UpdateSelected()
+    {
+        m_selectedCount = 0;
+        
+        var filters = new List<MeshFilter>();
+
+        foreach (var go in Selection.gameObjects)
+        {
+            var filter = go.GetComponent<MeshFilter>();
+            if (filter)
+            {
+                filters.Add(filter);
+            }
+        }
+        
+        switch (component)
+        {
+            case MeshComponent.Vertices:
+                foreach (var filter in filters)
+                {
+                    if (filter.sharedMesh == null)
+                        continue;
+                    
+                    m_selectedCount += filter.sharedMesh.vertexCount;
+                }
+                break;
+            case MeshComponent.Triangles:
+                foreach (var filter in filters)
+                {
+                    if (filter.sharedMesh == null)
+                        continue;
+                    
+                    m_selectedCount += filter.sharedMesh.triangles.Length; 
+                }
+                break;
+        }
+        
+        m_window.Repaint();
     }
 }
