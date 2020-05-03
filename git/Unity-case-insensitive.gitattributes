@@ -18,7 +18,10 @@
 #
 
 # Auto detect text files and perform LF normalization
-* text=auto
+# * text=auto
+
+# Do not perform LF normalization
+* -text 
 
 # Source code
 # c 
