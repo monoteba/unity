@@ -322,6 +322,8 @@
 *.[Dd][Oo][Tt][Mm] filter=lfs diff=lfs merge=lfs -text
 # dotx 
 *.[Dd][Oo][Tt][Xx] filter=lfs diff=lfs merge=lfs -text
+# drawio
+*.[Dd][Rr][Aa][Ww][Ii][Oo] filter=lfs diff=lfs merge=lfs -text
 # pages 
 *.[Pp][Aa][Gg][Ee][Ss] filter=lfs diff=lfs merge=lfs -text
 # pdf 
