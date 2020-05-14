@@ -95,6 +95,7 @@
 *.ztl filter=lfs diff=lfs merge=lfs -text
 
 # Image formats
+*.afphoto filter=lfs diff=lfs merge=lfs -text
 *.bmp filter=lfs diff=lfs merge=lfs -text
 *.dds filter=lfs diff=lfs merge=lfs -text
 *.exr filter=lfs diff=lfs merge=lfs -text
@@ -114,6 +115,7 @@
 *.tx filter=lfs diff=lfs merge=lfs -text
 
 # Vector formats
+*.afdesign filter=lfs diff=lfs merge=lfs -text
 *.ai filter=lfs diff=lfs merge=lfs -text
 *.eps filter=lfs diff=lfs merge=lfs -text
 *.pdf filter=lfs diff=lfs merge=lfs -text
