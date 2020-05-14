@@ -1,4 +1,4 @@
-# Case-sensitive .gitattributes for Unity.
+# Lowercase .gitattributes for Unity.
 # 
 # Unlike other examples, this does not use UnityYAMLMerge: 
 # https://docs.unity3d.com/Manual/SmartMerge.html
