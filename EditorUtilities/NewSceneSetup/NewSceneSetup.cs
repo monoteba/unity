@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -19,8 +19,10 @@ public class NewSceneSetup : Editor
         Camera.main.transform.position = Vector3.zero;
 
         var light = FindObjectOfType<Light>();
-        light.color = Color.white;
-        light.transform.position = Vector3.one;
+        if (light != null)
+        {
+            DestroyImmediate(light.gameObject);
+        }
 
         RenderSettings.skybox = null;
         RenderSettings.ambientIntensity = 0f;
