@@ -15,7 +15,7 @@ public class FindMaterialsWithShader : EditorWindow
 
     private Vector2 m_scroll;
 
-    [MenuItem("Assets/Find Materials with Shader")]
+    [MenuItem("Tools/Find Materials with Shader")]
     private static void Init()
     {
         var window = (FindMaterialsWithShader) GetWindow(typeof(FindMaterialsWithShader));
