@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -40,7 +38,7 @@ public class FindMaterialsWithShader : EditorWindow
             {
                 EditorGUILayout.ObjectField(material, typeof(Material), false);
             }
-            
+
             EditorGUILayout.EndScrollView();
         }
         else
@@ -51,17 +49,30 @@ public class FindMaterialsWithShader : EditorWindow
         EditorGUILayout.Space();
         GUILayout.FlexibleSpace();
 
-        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.BeginVertical();
+
         if (GUILayout.Button("Find Materials", GUILayout.Height(30)))
         {
             m_materials = FindMaterials();
         }
-
-        EditorGUILayout.EndHorizontal();
-
+        
         EditorGUILayout.Space();
+        
+        GUI.enabled = m_materials.Count > 0;
+        if (GUILayout.Button("Select Materials", GUILayout.Height(30)))
+        {
+            SelectMaterials();
+        }
+        GUI.enabled = true;
 
         EditorGUILayout.EndVertical();
+        EditorGUILayout.Space();
+        EditorGUILayout.EndVertical();
+    }
+
+    private void SelectMaterials()
+    {
+        Selection.objects = m_materials.ToArray();
     }
 
     private List<Material> FindMaterials()
