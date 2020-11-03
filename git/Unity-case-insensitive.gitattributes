@@ -144,6 +144,8 @@
 *.[Mm][Aa][Xx] filter=lfs diff=lfs merge=lfs -text
 # mb 
 *.[Mm][Bb] filter=lfs diff=lfs merge=lfs -text
+# mtl
+*.[Mm][Tt][Ll] filter=lfs diff=lfs merge=lfs -text
 # obj 
 *.[Oo][Bb][Jj] filter=lfs diff=lfs merge=lfs -text
 # ply 
@@ -352,3 +354,6 @@
 *.[Xx][Ll][Tt] filter=lfs diff=lfs merge=lfs -text
 # xlw 
 *.[Xx][Ll][Ww] filter=lfs diff=lfs merge=lfs -text
+# xml
+*.[Xx][Mm][Ll] filter=lfs diff=lfs merge=lfs -text
+
